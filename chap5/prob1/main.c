@@ -5,7 +5,6 @@
 
 int main(int argc, char *argv[]) {
 	int fd;
-	// chap5 prob1
 
 	if ((fd = open(argv[1], O_RDWR)) == 1)
 		printf("File Open Error\n");
