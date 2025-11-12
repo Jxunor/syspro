@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
 
 typedef struct {
     int id;
@@ -14,20 +13,20 @@ typedef struct {
 int main() {
     FILE *fp;
     Book b;
+    int mode;
 
     fp = fopen("db.dat", "rb");
 
-	printf("--bookquery--");
-    printf("%-5s %-20s %-20s %-6s %-13s %-12s\n",
-           "ID", "제목", "저자", "년도", "대여횟수", "대여중");
-
+    printf("--bookquery--\n");
+    printf("0: list of all books, 1: list of available books ) ");
+    scanf("%d", &mode);
+    printf("  id   bookname     author   year  numofborrow borrow\n");
     while (fread(&b, sizeof(b), 1, fp) == 1) {
-        printf("%-5d %-20s %-20s %-6d %-13d %-12s\n",
-               b.id, b.title, b.author, b.year,
-               b.borrow_count, b.is_borrowed ? "Yes" : "No");
+        if (mode == 0 || (mode == 1 && b.is_borrowed == 1)) {
+            printf("%4d %10s %10s %6d %12d %s\n", b.id, b.title, b.author, b.year, b.borrow_count, b.is_borrowed ? " True" : "False");
+        }
     }
 
     fclose(fp);
     return 0;
 }
-
