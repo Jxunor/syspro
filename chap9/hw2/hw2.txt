@@ -1,0 +1,14 @@
+1. (echo START1; sleep 10; echo DONE1) &
+	job 번호와 PID가 출력되고 START1이 출력된 뒤 10초 후 DONE1과 job 종료 메시지가 출력됨.
+
+2. (echo START2; sleep 10; echo DONE2) &
+	job 번호와 PID가 출력되고 START2이 출력된 뒤 10초 후 DONE2과 job 종료 메시지가 출력됨.
+
+3. kill -KILL 첫 번째 프로세스
+	첫 번째 프로세스가 종료되고 job 종료 메시지가 출력됨.
+
+4. kill -STOP 첫 번째 프로세스
+	첫 번째 프로세스가 중지됨.
+
+5. kill -CONT 첫 번째 프로세스
+	첫 번째 프로세스가 다시 실행됨.
